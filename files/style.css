@@ -22,7 +22,7 @@
 
 header {
   padding: 5px 10px;
-  width: calc(100%-20px);
+  width: calc(100% - 20px);
   height: 40px;
   background-color: var(--col-background);
   display: flex;
@@ -34,8 +34,19 @@ header {
   .logoicon {
     width: 25px;
     height: 25px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--col-sec);
-    border-radius: 20px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   .menuicon {
@@ -51,7 +62,7 @@ header {
   flex-direction: column;
   right: 0;
   position: fixed;
-  z-index: 2;
+  z-index: 12;
 
   .notiferror {
     background-color: rgb(112, 0, 0);
@@ -100,6 +111,9 @@ header {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 
   .maintime {
     font-variant-numeric: normal;
@@ -368,6 +382,8 @@ body {
 
   height: 600px;
   width: 350px;
+  display: flex;
+  flex-direction: column;
   /* border: 1px solid beige; */
 }
 
@@ -455,4 +471,360 @@ button img:hover,
 #addbtnalt img:hover {
   transform: scale(1.1) rotate(2deg);
   filter: brightness(1.2);
+}
+
+/* ===================== Themes ===================== */
+html[data-theme="midnight"] {
+  --col-background: #0b1024;
+  --col-sec: rgb(230, 235, 250);
+  --col-ter: #5a6489;
+  --col-prim: #7aa2f7;
+}
+
+html[data-theme="forest"] {
+  --col-background: #0d1b12;
+  --col-sec: rgb(230, 245, 235);
+  --col-ter: #4d7a5f;
+  --col-prim: #4caf82;
+}
+
+html[data-theme="sunset"] {
+  --col-background: #1a1014;
+  --col-sec: rgb(250, 235, 230);
+  --col-ter: #8a5a52;
+  --col-prim: #ff8c69;
+}
+
+html[data-theme="tomato"] {
+  --col-background: #170808;
+  --col-sec: rgb(250, 235, 235);
+  --col-ter: #8a4a4a;
+  --col-prim: #ff5252;
+}
+
+/* ===================== Header icons ===================== */
+.headericons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.miniicon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--col-sec);
+}
+
+.miniicon:hover {
+  color: var(--col-prim);
+  transform: scale(1.1);
+}
+
+.menuicon {
+  cursor: pointer;
+}
+
+/* ===================== Settings panel ===================== */
+.settingsoverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 10;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.settingsoverlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.settingspanel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 250px;
+  max-width: 80%;
+  background: var(--col-background);
+  z-index: 11;
+  padding: 14px;
+  overflow-y: auto;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.4);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translateX(0);
+  transition: transform 0.25s ease;
+}
+
+.settingspanel.hidden {
+  transform: translateX(100%);
+  pointer-events: none;
+}
+
+.settingsheader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  span {
+    font-family: var(--font-prim);
+    font-size: 18px;
+  }
+
+  img {
+    height: 14px;
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  img:hover {
+    opacity: 1;
+  }
+}
+
+.settingssection {
+  margin: 16px 0;
+
+  h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--col-ter);
+    margin-bottom: 8px;
+    font-family: var(--font-sec);
+  }
+}
+
+.themepicker {
+  display: flex;
+  gap: 10px;
+}
+
+.themeswatch {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+}
+
+.themeswatch.selected {
+  border-color: var(--col-sec);
+}
+
+.theme-default {
+  background: linear-gradient(135deg, #101010 50%, #b3b3b3 50%);
+}
+
+.theme-midnight {
+  background: linear-gradient(135deg, #0b1024 50%, #7aa2f7 50%);
+}
+
+.theme-forest {
+  background: linear-gradient(135deg, #0d1b12 50%, #4caf82 50%);
+}
+
+.theme-sunset {
+  background: linear-gradient(135deg, #1a1014 50%, #ff8c69 50%);
+}
+
+.theme-tomato {
+  background: linear-gradient(135deg, #170808 50%, #ff5252 50%);
+}
+
+.togglerow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 6px 0;
+  cursor: pointer;
+
+  select {
+    background-color: rgb(79, 79, 79);
+    border: none;
+    border-radius: 6px;
+    padding: 3px 6px;
+  }
+}
+
+.statsgrid {
+  display: flex;
+  gap: 6px;
+}
+
+.statbox {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 8px 4px;
+  text-align: center;
+
+  span {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  label {
+    font-size: 10px;
+    color: var(--col-ter);
+  }
+}
+
+/* ===================== Drag to reorder ===================== */
+.clock[draggable="true"],
+.inactiveclock[draggable="true"] {
+  cursor: grab;
+}
+
+.clock.dragging,
+.inactiveclock.dragging {
+  opacity: 0.4;
+}
+
+.clock.drag-over,
+.inactiveclock.drag-over {
+  outline: 2px dashed var(--col-prim);
+  outline-offset: 2px;
+}
+
+/* ===================== Mini widget window ===================== */
+/* Reuses the same header, .maintime and icon-button styling as the main popup. */
+body.mini {
+  width: 260px;
+  height: 230px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  header {
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  #mini {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .clockname {
+    height: auto;
+    width: 100%;
+    font-size: 13px;
+    opacity: 0.85;
+  }
+
+  .maintime {
+    min-width: unset;
+    width: max-content;
+    padding: 8px 18px;
+
+    span {
+      font-size: 54px;
+    }
+  }
+}
+
+.miniclockdet {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+
+  img {
+    height: 26px;
+    cursor: pointer;
+  }
+}
+
+/* ===================== Footer ===================== */
+.footer {
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background-color: var(--col-background);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--font-sec);
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+}
+
+.footer-by {
+  color: var(--col-ter);
+}
+
+.footer-omnori {
+  color: var(--col-sec);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer-omnori:hover {
+  color: var(--col-prim);
+}
+
+.footer-tagline {
+  font-size: 10px;
+  color: var(--col-ter);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.footer-rate-link {
+  font-size: 11px;
+  color: var(--col-prim);
+  text-decoration: none;
+  margin-top: 2px;
+}
+
+.footer-rate-link:hover {
+  text-decoration: underline;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+
+  a {
+    color: var(--col-ter);
+    display: flex;
+  }
+
+  a:hover {
+    color: var(--col-prim);
+    transform: scale(1.15);
+  }
+
+  svg {
+    width: 15px;
+    height: 15px;
+  }
 }

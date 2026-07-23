@@ -3,26 +3,82 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>PomoInfinity</title>
+  <title>Pomori</title>
   <link rel="shortcut icon" href="files/images/logo/logo.png" type="image/x-icon" />
   <link rel="stylesheet" href="files/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Gorditas:wght@400;700&family=Lexend:wght@300;400;500;700&display=swap"
     rel="stylesheet" />
 </head>
 
 <body>
   <header>
-    <div class="logoicon">
-      <div id="pop" class="logoicon"></div>
+    <div class="logoicon" id="pop" title="Open in a separate window">
+      <img src="files/images/logo/logo-48.png" alt="Pomori" />
     </div>
-    <span>PomoInfinity</span>
-    <div class="menuicon">
-      <img src="files/images/menu.png" alt="" height="30px" style="color: aliceblue" />
+    <span>Pomori</span>
+    <div class="headericons">
+      <div class="miniicon" id="minibtn" title="Open mini widget">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="5" width="18" height="14" rx="2" />
+          <rect x="12" y="11" width="7" height="6" rx="1" fill="currentColor" />
+        </svg>
+      </div>
+      <div class="menuicon" id="menubtn">
+        <img src="files/images/menu.png" alt="" height="30px" style="color: aliceblue" />
+      </div>
     </div>
   </header>
   <div id="notifcont"></div>
+
+  <div id="settingsoverlay" class="settingsoverlay hidden"></div>
+  <div id="settingspanel" class="settingspanel hidden">
+    <div class="settingsheader">
+      <span>Settings</span>
+      <img id="closesettings" src="files/images/x.png" alt="Close" />
+    </div>
+    <div class="settingsbody">
+      <div class="settingssection">
+        <h3>Theme</h3>
+        <div class="themepicker" id="themepicker">
+          <div class="themeswatch theme-default" data-theme="default" title="Classic"></div>
+          <div class="themeswatch theme-midnight" data-theme="midnight" title="Midnight"></div>
+          <div class="themeswatch theme-forest" data-theme="forest" title="Forest"></div>
+          <div class="themeswatch theme-sunset" data-theme="sunset" title="Sunset"></div>
+          <div class="themeswatch theme-tomato" data-theme="tomato" title="Tomato"></div>
+        </div>
+      </div>
+      <div class="settingssection">
+        <h3>Notifications</h3>
+        <label class="togglerow"><span>Sound on finish</span><input type="checkbox" id="togglesound" /></label>
+        <label class="togglerow"><span>Desktop alert on finish</span><input type="checkbox"
+            id="togglenotif" /></label>
+      </div>
+      <div class="settingssection">
+        <h3>Auto Cycle</h3>
+        <label class="togglerow"><span>Auto-start next work/break</span><input type="checkbox"
+            id="toggleautocycle" /></label>
+        <label class="togglerow"><span>Long break every</span>
+          <select id="cyclesbeforelong">
+            <option value="2">2 sessions</option>
+            <option value="4">4 sessions</option>
+            <option value="6">6 sessions</option>
+          </select>
+        </label>
+      </div>
+      <div class="settingssection">
+        <h3>Stats</h3>
+        <div class="statsgrid">
+          <div class="statbox"><span id="statsessions">0</span><label>Sessions</label></div>
+          <div class="statbox"><span id="statfocus">0h 0m</span><label>Focused</label></div>
+          <div class="statbox"><span id="statstreak">0</span><label>Day streak</label></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="main">
     <div class="maintime">
       <span id="mainhrs">00</span><span style="position: relative; bottom: 10px">:</span><span id="mainmin">00</span>
@@ -32,9 +88,15 @@
       <div class=" newclock">
         <form id="newclockform">
           <div class="formats">
-            <div class="format" data-text="Break" data-time="00:05:00"><span>Break</span> <span>05:00</span></div>
-            <div class="format" data-text="Work" data-time="00:25:00"><span>Work</span> <span>25:00</span></div>
-            <div class="format" data-text="Focus" data-time="00:50:00"><span>Focus</span> <span>50:00</span></div>
+            <div class="format" data-text="Break" data-time="00:05:00" data-type="break"><span>Break</span>
+              <span>05:00</span>
+            </div>
+            <div class="format" data-text="Work" data-time="00:25:00" data-type="work"><span>Work</span>
+              <span>25:00</span>
+            </div>
+            <div class="format" data-text="Focus" data-time="00:50:00" data-type="work"><span>Focus</span>
+              <span>50:00</span>
+            </div>
           </div>
 
           <input id="clockname" required name="clockname" type="text" placeholder="Work To Do" />
@@ -63,6 +125,39 @@
 
     </div>
   </div>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <span class="footer-by">Built by</span>
+      <a href="https://github.com/omnori" target="_blank" rel="noopener" class="footer-omnori">Omnori</a>
+    </div>
+    <p class="footer-tagline">Building Products With No End.</p>
+    <a href="https://chromewebstore.google.com/detail/pomoinfinity/imipbhidbjfooicfmljocgklihnhekcp" target="_blank"
+      rel="noopener" class="footer-rate-link">⭐ Rate Pomori</a>
+    <div class="socials">
+      <a href="https://www.instagram.com/omnori.tech" target="_blank" rel="noopener" title="Instagram"
+        aria-label="Omnori on Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="3" y="3" width="18" height="18" rx="5" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none" />
+        </svg>
+      </a>
+      <a href="https://github.com/omnori" target="_blank" rel="noopener" title="GitHub" aria-label="Omnori on GitHub">
+        <svg viewBox="0 0 16 16" fill="currentColor">
+          <path
+            d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+        </svg>
+      </a>
+      <a href="https://discord.gg/5ag9gjsDde" target="_blank" rel="noopener" title="Discord"
+        aria-label="Omnori on Discord">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M20.32 5.37a17.9 17.9 0 0 0-4.43-1.37c-.19.34-.4.79-.55 1.15a16.6 16.6 0 0 0-4.9 0c-.15-.36-.37-.81-.56-1.15-1.53.26-3 .74-4.43 1.37C2.6 9.9 1.85 14.3 2.18 18.65a18 18 0 0 0 5.5 2.79c.44-.6.84-1.24 1.18-1.92-.65-.24-1.27-.54-1.86-.89.16-.11.31-.23.46-.35a12.8 12.8 0 0 0 10.98 0c.15.12.3.24.46.35-.59.35-1.21.65-1.86.89.34.68.74 1.32 1.18 1.92a18 18 0 0 0 5.5-2.79c.4-5.02-.68-9.38-2.9-13.28ZM9.68 15.9c-.98 0-1.78-.9-1.78-2s.79-2 1.78-2c1 0 1.8.91 1.78 2 0 1.1-.79 2-1.78 2Zm5.64 0c-.98 0-1.78-.9-1.78-2s.79-2 1.78-2c1 0 1.8.91 1.78 2 0 1.1-.78 2-1.78 2Z" />
+        </svg>
+      </a>
+    </div>
+  </footer>
 </body>
 <script src="files/script.js"></script>
 

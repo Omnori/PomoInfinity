@@ -1,4 +1,4 @@
-# PomoInfinity
+# Pomori
 
 <div align="center">
 
@@ -15,9 +15,9 @@
 
 ## 📖 About
 
-**PomoInfinity** is a Chrome Extension designed to take the standard Pomodoro technique to the next level. Unlike traditional timers that track one session at a time, PomoInfinity allows you to create a dynamic queue of specific work tasks, manage them individually, and visualize your progress with a clean, dark-mode interface.
+**Pomori** is a Chrome Extension designed to take the standard Pomodoro technique to the next level. Unlike traditional timers that track one session at a time, Pomori allows you to create a dynamic queue of specific work tasks, manage them individually, and visualize your progress with a clean, dark-mode interface.
 
-Whether you are working alone or planning to scale for a team, PomoInfinity helps you visualize time as a tangible resource.
+Whether you are working alone or planning to scale for a team, Pomori helps you visualize time as a tangible resource.
 
 ## ✨ Features
 
@@ -49,11 +49,11 @@ Since this extension is currently in development (or not yet on the Web Store), 
 3.  Toggle **Developer mode** in the top right corner.
 4.  Click the **Load unpacked** button.
 5.  Select the folder containing this project (the folder where `manifest.json` is located).
-6.  The **PomoInfinity** icon should now appear in your browser toolbar!
+6.  The **Pomori** icon should now appear in your browser toolbar!
 
 ## 🚀 Usage
 
-1.  **Open the Extension:** Click the PomoInfinity logo in your browser toolbar.
+1.  **Open the Extension:** Click the Pomori logo in your browser toolbar.
 2.  **Add a Task:**
     * Click the **+** (Plus) button to open the "New Clock" form.
     * Enter a **Task Name** (e.g., "Fix Bug #12").
@@ -67,7 +67,7 @@ Since this extension is currently in development (or not yet on the Web Store), 
 ## 📂 Project Structure
 
 ```text
-PomoInfinity/
+Pomori/
 ├── manifest.json       # Extension configuration (V3)
 ├── popup.html          # Main UI structure
 ├── files/
